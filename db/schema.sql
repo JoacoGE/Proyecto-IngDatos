@@ -1,24 +1,12 @@
-CREATE TABLE "schema_migrations" (version varchar(128) primary key);
+CREATE TABLE IF NOT EXISTS "schema_migrations" (version varchar(128) primary key);
 CREATE TABLE Clientes (
-  id INTEGER NOT NULL PRIMARY KEY ,
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   nombre VARCHAR(30) NOT NULL,
   apellido VARCHAR(30) NOT NULL,
   DNI VARCHAR(8) NOT NULL,
   correo VARCHAR(20) NOT NULL,
   celular VARCHAR(10) NOT NULL,
   direccion VARCHAR(30) NOT NULL
-
-);
-CREATE TABLE Pedido (
-    id INTEGER NOT NULL PRIMARY KEY ,
-    Nro_pedido INTEGER NOT NULL,
-    fecha DATETIME NOT NULL,
-    id_Cliente INTEGER NOT NULL,
-    id_Estado INTEGER NOT NULL,
-    id_Entrega INTEGER NOT NULL,
-    FOREIGN KEY (id_Cliente) REFERENCES Cliente (id),
-    FOREIGN KEY (id_Estado) REFERENCES Estado (id),
-    FOREIGN KEY (id_Entrega) REFERENCES Entrega (id)
 
 );
 CREATE TABLE Estado (
@@ -141,6 +129,19 @@ CREATE TABLE PedidoProducto (
     FOREIGN KEY (nroPedido) REFERENCES Pedido(id),
     FOREIGN KEY (idProducto) REFERENCES Producto(id)
 );
+CREATE TABLE Pedido (
+    id INTEGER NOT NULL PRIMARY KEY ,
+    Nro_pedido INTEGER NOT NULL,
+    fecha DATETIME NOT NULL,
+    monto FLOAT NOT NULL,
+    id_Cliente INTEGER NOT NULL,
+    id_Estado INTEGER NOT NULL,
+    id_Entrega INTEGER NOT NULL,
+    FOREIGN KEY (id_Cliente) REFERENCES Clientes (id),
+    FOREIGN KEY (id_Estado) REFERENCES Estado (id),
+    FOREIGN KEY (id_Entrega) REFERENCES Entrega (id)
+
+);
 -- Dbmate schema migrations
 INSERT INTO "schema_migrations" (version) VALUES
   ('20241007210242'),
@@ -163,4 +164,5 @@ INSERT INTO "schema_migrations" (version) VALUES
   ('20241008015314'),
   ('20241008015327'),
   ('20241008015335'),
-  ('20241008015410');
+  ('20241008015410'),
+  ('20241011172104');
