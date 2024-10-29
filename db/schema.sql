@@ -121,25 +121,25 @@ CREATE TABLE Departamento (
     id INTEGER NOT NULL PRIMARY KEY ,
     nombre VARCHAR(20)
 );
-CREATE TABLE PedidoProducto (
+CREATE TABLE PedidoProductoTallaColor (
     id INTEGER NOT NULL PRIMARY KEY ,
-    nroPedido INTEGER NOT NULL,
-    idProducto INTEGER NOT NULL,
+    idPedido INTEGER NOT NULL,
+    idProductoTallaColor INTEGER NOT NULL,
     cantidad INTEGER NOT NULL,
-    FOREIGN KEY (nroPedido) REFERENCES Pedido(id),
-    FOREIGN KEY (idProducto) REFERENCES Producto(id)
+    FOREIGN KEY (idPedido) REFERENCES Pedido(id),
+    FOREIGN KEY (idProductoTallaColor) REFERENCES Producto_Talla_Color(id)
 );
 CREATE TABLE Pedido (
     id INTEGER NOT NULL PRIMARY KEY ,
     Nro_pedido INTEGER NOT NULL,
     fecha DATETIME NOT NULL,
     monto FLOAT NOT NULL,
-    id_Cliente INTEGER NOT NULL,
-    id_Estado INTEGER NOT NULL,
-    id_Entrega INTEGER NOT NULL,
-    FOREIGN KEY (id_Cliente) REFERENCES Clientes (id),
-    FOREIGN KEY (id_Estado) REFERENCES Estado (id),
-    FOREIGN KEY (id_Entrega) REFERENCES Entrega (id)
+    idCliente INTEGER NOT NULL,
+    idEstado INTEGER NOT NULL,
+    idEntrega INTEGER NOT NULL,
+    FOREIGN KEY (idCliente) REFERENCES Clientes (id),
+    FOREIGN KEY (idEstado) REFERENCES Estado (id),
+    FOREIGN KEY (idEntrega) REFERENCES Entrega (id)
 
 );
 -- Dbmate schema migrations

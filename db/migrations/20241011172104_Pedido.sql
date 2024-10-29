@@ -5,12 +5,12 @@ CREATE TABLE Pedido (
     Nro_pedido INTEGER NOT NULL,
     fecha DATETIME NOT NULL,
     monto FLOAT NOT NULL,
-    id_Cliente INTEGER NOT NULL,
-    id_Estado INTEGER NOT NULL,
-    id_Entrega INTEGER NOT NULL,
-    FOREIGN KEY (id_Cliente) REFERENCES Clientes (id),
-    FOREIGN KEY (id_Estado) REFERENCES Estado (id),
-    FOREIGN KEY (id_Entrega) REFERENCES Entrega (id)
+    idCliente INTEGER NOT NULL,
+    idEstado INTEGER NOT NULL,
+    idEntrega INTEGER NOT NULL,
+    FOREIGN KEY (idCliente) REFERENCES Clientes (id),
+    FOREIGN KEY (idEstado) REFERENCES Estado (id),
+    FOREIGN KEY (idEntrega) REFERENCES Entrega (id)
         
 );
 
