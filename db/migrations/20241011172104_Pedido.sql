@@ -1,5 +1,4 @@
 -- migrate:up
--- migrate:up
 CREATE TABLE Pedido (
     id INTEGER NOT NULL PRIMARY KEY ,
     Nro_pedido INTEGER NOT NULL,
@@ -18,5 +17,5 @@ CREATE TABLE Pedido (
 
 DROP TABLE Pedido;
 
--- migrate:down
+
 
