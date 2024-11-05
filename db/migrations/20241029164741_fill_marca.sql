@@ -8,7 +8,7 @@ INSERT INTO Marca (id, nombre) VALUES (6, 'Levis');
 INSERT INTO Marca (id, nombre) VALUES (7, 'Sybilla');
 INSERT INTO Marca (id, nombre) VALUES (8, 'Dior');
 INSERT INTO Marca (id, nombre) VALUES (9, 'Basement');
-INSERT INTO Marca (id, nombre) VALUES (10, 'dunkelvolk');
+INSERT INTO Marca (id, nombre) VALUES (10, 'Dunkelvolk');
 
 -- migrate:down
 

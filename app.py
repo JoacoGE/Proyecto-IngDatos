@@ -9,7 +9,7 @@ def server_static(filename):
 
 @app.route('/')
 def home():
-   ## db = Database()
+    ## db = Database()
     return render_template('index.html')
 
 
