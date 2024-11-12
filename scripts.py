@@ -42,13 +42,27 @@ def llenar_productos():
     with open('inserts_clientes.sql', 'w', encoding='utf-8') as archivo:
         archivo.write(contenido)
 
+def llenar_productos():
+    i = 0
+    contenido = ''
+    while i < 1000:
+        id = 1+i
+        nombre = fake.name()
+        codigo = random.randint(1000,9999)
+        precio = random.uniform(1000.0, 9999.0)
+        foto = fake.image_url()
+        descripcion = fake.text()  
+        especificaciones = fake.text()
+        idMarca = random.randint(1,10)
+        idTipoProducto = random.randint(1,10)
+        idProveedor = random.randint(1,10) 
+        idTemporada = random.randint(1,8)
+        idGenero = random.randint(1,5)
+        tmp = f"INSERT INTO Producto (id, nombre, codigo, precio, foto, descripcion, especificaciones, idMarca, idTipoProducto, idProveedor, idTemporada, idGenero ) VALUES ({id}, '{nombre}', {codigo}, {precio},'{foto}', '{descripcion}','{especificaciones}', {idMarca},{idTipoProducto}, {idProveedor},{idTemporada}, {idGenero} );\n"
+        contenido= contenido+tmp
+        i = i + 1
+    with open('inserts_productos.sql', 'w', encoding='utf-8') as archivo:
+        archivo.write(contenido)
 
 
-
-
-
-
-
-
-
-llenar_clientes()
+llenar_productos()
