@@ -59,6 +59,7 @@ adjetivos = [
 
 def generar_nombres_prendas(cantidad):
     nombres_de_prendas = set()  # Usar un conjunto para evitar duplicados
+    nombres_de_prendas.add("Polo Pique")  # Agregar un nombre fijo
     while len(nombres_de_prendas) < cantidad:
         tipo = random.choice(tipos_de_prendas)
         adjetivo = random.choice(adjetivos)
