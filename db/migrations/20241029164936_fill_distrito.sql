@@ -115,3 +115,4 @@ INSERT INTO Distrito (id, nombre, idProvincia) VALUES (88, 'Huanchay', 38);
 
 -- migrate:down
 
+DELETE FROM Distrito
