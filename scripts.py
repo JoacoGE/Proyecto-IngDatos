@@ -42,12 +42,39 @@ def llenar_productos():
     with open('inserts_clientes.sql', 'w', encoding='utf-8') as archivo:
         archivo.write(contenido)
 
+
+# Listas de tipos de prendas y adjetivos
+tipos_de_prendas = [
+    "camiseta", "pantalón", "chaqueta", "sudadera", "falda", "blusa", 
+    "short", "abrigo", "traje", "vestido", "chaleco", "camisa", "jeans",
+    "suéter", "top", "leggins", "parka", "bufanda", "camisón", "bata"
+]
+
+adjetivos = [
+    "Comfort", "Essential", "Elegant", "Classic", "Cozy", "Urban", 
+    "Soft", "Vintage", "Bold", "Trendy", "Relax", "Modern", "Casual",
+    "Lux", "Sporty", "Luxe", "Active", "Eco", "Fresh", "Cool"
+]
+
+
+def generar_nombres_prendas(cantidad):
+    nombres_de_prendas = set()  # Usar un conjunto para evitar duplicados
+    while len(nombres_de_prendas) < cantidad:
+        tipo = random.choice(tipos_de_prendas)
+        adjetivo = random.choice(adjetivos)
+        nombre = f"{adjetivo} {tipo.capitalize()}"
+        nombres_de_prendas.add(nombre)
+    return list(nombres_de_prendas)
+
+# Genera 1000 nombres de prendas únicos
+nombres_de_prendas = generar_nombres_prendas(1000)
+
 def llenar_productos():
     i = 0
     contenido = ''
     while i < 1000:
         id = 1+i
-        nombre = fake.name()
+        nombre = nombres_de_prendas[i-1]  
         codigo = random.randint(1000,9999)
         precio = random.uniform(1000.0, 9999.0)
         foto = fake.image_url()
@@ -63,6 +90,5 @@ def llenar_productos():
         i = i + 1
     with open('inserts_productos.sql', 'w', encoding='utf-8') as archivo:
         archivo.write(contenido)
-
 
 llenar_productos()
