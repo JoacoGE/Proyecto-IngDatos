@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Inicio</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-
+</head>
 <body>
     <header>
         <h1>Bienvenido a Nuestro Proyecto</h1>
@@ -21,10 +21,24 @@
         <section>
             <h2>Introducción</h2>
             <p>Esta es la página de inicio de nuestro proyecto. Aquí encontrarás información relevante y enlaces a otras secciones.</p>
+            <a href="/clientes" class="button">Ver Clientes</a>
+        </section>
+        <section>
+            <h2>Productos</h2>
+            <div class="productos">
+                {% for producto in productos %}
+                    <div class="producto">
+                        <img src="{{ producto['url_imagen'] }}" alt="{{ producto['nombre'] }}">
+                        <h3>{{ producto['nombre'] }}</h3>
+                        <p>{{ producto['descripcion'] }}</p>
+                        <p>Precio: {{ producto['precio'] }}</p>
+                    </div>
+                {% endfor %}
+            </div>
         </section>
     </main>
     <footer>
-        <p>&copy; 2023 Proyecto IngDatos. Todos los derechos reservados.</p>
+        <p>&copy; 2024 Proyecto IngDatos. Todos los derechos reservados.</p>
     </footer>
 </body>
 </html>

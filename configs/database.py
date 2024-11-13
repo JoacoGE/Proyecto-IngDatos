@@ -36,3 +36,8 @@ class Database:
         """Ejecutar una consulta SQL y devolver un único resultado."""
         cursor = self.execute(query, params)
         return cursor.fetchone()
+
+    def get_all_products(self):
+        """Obtener todos los productos de la base de datos."""
+        query = "SELECT nombre, descripcion, precio, foto AS url_imagen FROM Producto"
+        return self.fetchall(query)

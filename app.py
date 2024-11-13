@@ -9,9 +9,14 @@ def server_static(filename):
 
 @app.route('/')
 def home():
-    ## db = Database()
-    return render_template('index.html')
+    db = Database()
+    productos = db.get_all_products()  # Obtener todos los productos
+    return render_template('index.html', productos=productos)
 
+@app.route('/clientes')
+def cliente():
+    db = Database()
+    return render_template('clientes.tpl')
 
 if __name__ == '__main__':
     app.run(debug=True)
