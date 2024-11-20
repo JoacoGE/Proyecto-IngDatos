@@ -10,4 +10,4 @@ CREATE TABLE PedidoProductoTallaColor (
 
 -- migrate:down
 
-DROP TABLE PedidoProducto;
+DROP TABLE PedidoProductoTallaColor;

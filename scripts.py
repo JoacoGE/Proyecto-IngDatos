@@ -24,25 +24,6 @@ def llenar_clientes():
     with open('inserts_clientes.sql', 'w', encoding='utf-8') as archivo:
         archivo.write(contenido)
 
-
-def llenar_productos():
-    i = 0
-    contenido = ''
-    while i < 1000:
-        id = 1+i
-        nombre = fake.name()
-        apellido = fake.last_name()
-        dni = random.randint(70000000,79999999)
-        correo = fake.email()
-        telefono = fake.phone_number()
-        direccion = fake.address()
-        tmp = f"INSERT INTO Clientes (id, nombre, apellido, dni, correo, telefono, direccion) VALUES ({id}, '{nombre}', '{apellido}', {dni},'{correo}', '{telefono}','{direccion}' );\n"
-        contenido= contenido+tmp
-        i = i + 1
-    with open('inserts_clientes.sql', 'w', encoding='utf-8') as archivo:
-        archivo.write(contenido)
-
-
 # Listas de tipos de prendas y adjetivos
 tipos_de_prendas = [
     "camiseta", "pantalón", "chaqueta", "sudadera", "falda", "blusa", 
@@ -63,19 +44,20 @@ def generar_nombres_prendas(cantidad):
     while len(nombres_de_prendas) < cantidad:
         tipo = random.choice(tipos_de_prendas)
         adjetivo = random.choice(adjetivos)
-        nombre = f"{adjetivo} {tipo.capitalize()}"
+        nombre = f"{adjetivo} {tipo}"
         nombres_de_prendas.add(nombre)
     return list(nombres_de_prendas)
 
 # Genera 1000 nombres de prendas únicos
-nombres_de_prendas = generar_nombres_prendas(1000)
+nombres_de_prendas = generar_nombres_prendas(400)
 
 def llenar_productos():
     i = 0
     contenido = ''
+
     while i < 1000:
         id = 1+i
-        nombre = nombres_de_prendas[i-1]  
+        nombre = random.choice(nombres_de_prendas)
         codigo = random.randint(1000,9999)
         precio = random.uniform(1000.0, 9999.0)
         foto = fake.image_url()
@@ -92,4 +74,29 @@ def llenar_productos():
     with open('inserts_productos.sql', 'w', encoding='utf-8') as archivo:
         archivo.write(contenido)
 
-llenar_productos()
+
+def llenar_producto_talla_color():
+    i = 0
+    contenido = ''
+    combinaciones = set() 
+
+    while i < 390000 :
+        print(i)
+        idProducto = random.randint(1, 1000)
+        idTalla = random.randint(1, 26)
+        idColor = random.randint(1, 15)
+
+        combinacion = (idProducto, idTalla, idColor)
+        if combinacion not in combinaciones:
+            combinaciones.add(combinacion) 
+            id = i + 1
+            tmp = f"INSERT INTO Producto_Talla_Color (id, idProducto, idTalla, idColor) VALUES ({id}, {idProducto}, {idTalla}, {idColor});\n"
+            contenido += tmp
+            i += 1  
+
+    with open('inserts_producto_talla_color.sql', 'w', encoding='utf-8') as archivo:
+        archivo.write(contenido)
+
+llenar_producto_talla_color()
+
+

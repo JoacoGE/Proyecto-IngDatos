@@ -86,9 +86,7 @@ CREATE TABLE Sedes (
     nombre VARCHAR(100),
     direccion VARCHAR(20),
     idDistrito INTEGER NOT NULL,
-    idTipoEntrega INTEGER NOT NULL,
-    FOREIGN KEY (idDistrito) REFERENCES Distrito(id),
-    FOREIGN KEY (idTipoEntrega) REFERENCES TipoEntrega(id)
+    FOREIGN KEY (idDistrito) REFERENCES Distrito(id)
 );
 CREATE TABLE EntregaDomicilio (
     id INTEGER NOT NULL PRIMARY KEY ,
