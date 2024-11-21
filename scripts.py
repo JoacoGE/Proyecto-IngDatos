@@ -80,7 +80,7 @@ def llenar_producto_talla_color():
     contenido = ''
     combinaciones = set() 
 
-    while i < 390000 :
+    while i < 100000 :
         idProducto = random.randint(1, 1000)
         idTalla = random.randint(1, 26)
         idColor = random.randint(1, 15)
@@ -107,7 +107,7 @@ def llenar_pedidos():
         id_cliente = random.randint(1, 1000)
         id_estado = random.randint(1, 2)
         id_entrega = random.randint(1, 2)
-        tmp = f"INSERT INTO Pedido (id, NroPedido, fecha, Monto, id_cliente, id_estado, id_entrega) VALUES ({id}, {NroPedido}, {fecha}, {Monto}, {id_cliente}, {id_estado}, {id_entrega});\n"
+        tmp = f"INSERT INTO Pedido (id, Nro_pedido, fecha, monto, idCliente, idEstado, idEntrega) VALUES ({id}, {NroPedido}, {fecha}, {Monto}, {id_cliente}, {id_estado}, {id_entrega});\n"
         contenido += tmp
         i += 1  
 
