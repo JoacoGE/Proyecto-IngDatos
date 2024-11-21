@@ -59,7 +59,7 @@ def llenar_productos():
         id = 1+i
         nombre = random.choice(nombres_de_prendas)
         codigo = random.randint(1000,9999)
-        precio = random.uniform(1000.0, 9999.0)
+        precio = round(random.uniform(1000.0, 9999.0), 2)
         foto = fake.image_url()
         descripcion = fake.text()  
         especificaciones = fake.text()
@@ -81,7 +81,6 @@ def llenar_producto_talla_color():
     combinaciones = set() 
 
     while i < 390000 :
-        print(i)
         idProducto = random.randint(1, 1000)
         idTalla = random.randint(1, 26)
         idColor = random.randint(1, 15)
@@ -97,6 +96,26 @@ def llenar_producto_talla_color():
     with open('inserts_producto_talla_color.sql', 'w', encoding='utf-8') as archivo:
         archivo.write(contenido)
 
-llenar_producto_talla_color()
+def llenar_pedidos():
+    i = 0
+    contenido = ''
+    while i < 10000:
+        id = 1+i
+        NroPedido = random.randint(10000, 99999)
+        fecha = fake.date_time_between(start_date='-1y', end_date='now').strftime('%Y-%m-%d')
+        Monto = round(random.uniform(200.0, 400.0),2)
+        id_cliente = random.randint(1, 1000)
+        id_estado = random.randint(1, 2)
+        id_entrega = random.randint(1, 2)
+        tmp = f"INSERT INTO Pedido (id, NroPedido, fecha, Monto, id_cliente, id_estado, id_entrega) VALUES ({id}, {NroPedido}, {fecha}, {Monto}, {id_cliente}, {id_estado}, {id_entrega});\n"
+        contenido += tmp
+        i += 1  
+
+    with open('inserts_Pedido.sql', 'w', encoding='utf-8') as archivo:
+        archivo.write(contenido)
+
+llenar_pedidos()
+
+
 
 

@@ -1,4 +1,3 @@
--- migrate:up
 INSERT INTO Pedido (id, NroPedido, fecha, Monto, id_cliente, id_estado, id_entrega) VALUES (1, 25531, 2024-04-07, 230.42, 269, 2, 1);
 INSERT INTO Pedido (id, NroPedido, fecha, Monto, id_cliente, id_estado, id_entrega) VALUES (2, 47123, 2024-06-15, 248.24, 839, 1, 2);
 INSERT INTO Pedido (id, NroPedido, fecha, Monto, id_cliente, id_estado, id_entrega) VALUES (3, 69735, 2024-11-03, 309.92, 193, 1, 2);
@@ -9999,8 +9998,3 @@ INSERT INTO Pedido (id, NroPedido, fecha, Monto, id_cliente, id_estado, id_entre
 INSERT INTO Pedido (id, NroPedido, fecha, Monto, id_cliente, id_estado, id_entrega) VALUES (9998, 74647, 2024-10-24, 281.92, 909, 2, 1);
 INSERT INTO Pedido (id, NroPedido, fecha, Monto, id_cliente, id_estado, id_entrega) VALUES (9999, 64030, 2024-08-06, 356.06, 449, 1, 1);
 INSERT INTO Pedido (id, NroPedido, fecha, Monto, id_cliente, id_estado, id_entrega) VALUES (10000, 39082, 2024-11-13, 357.44, 848, 2, 1);
-
-
--- migrate:down
-
-DELETE FROM Pedido;
