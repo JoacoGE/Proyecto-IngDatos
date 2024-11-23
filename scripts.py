@@ -86,6 +86,7 @@ def llenar_producto_talla_color():
         idColor = random.randint(1, 15)
 
         combinacion = (idProducto, idTalla, idColor)
+        
         if combinacion not in combinaciones:
             combinaciones.add(combinacion) 
             id = i + 1
