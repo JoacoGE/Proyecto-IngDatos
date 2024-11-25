@@ -140,6 +140,7 @@ CREATE TABLE Pedido (
     FOREIGN KEY (idEntrega) REFERENCES Entrega (id)
 
 );
+
 -- Dbmate schema migrations
 INSERT INTO "schema_migrations" (version) VALUES
   ('20241007210242'),

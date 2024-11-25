@@ -1998,7 +1998,3 @@ INSERT INTO EntregaRecojo (id, direccion, idTipoEntrega, idSede) VALUES (999, '3
 Lesliebury, OR 61569', '2', 18);
 INSERT INTO EntregaRecojo (id, direccion, idTipoEntrega, idSede) VALUES (1000, '06290 Powell Avenue Apt. 979
 Oliviaview, ME 62713', '2', 9);
-
--- migrate:down
-
-DELETE FROM EntregaRecojo

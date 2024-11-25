@@ -24,7 +24,7 @@ def llenar_clientes():
     with open('inserts_clientes.sql', 'w', encoding='utf-8') as archivo:
         archivo.write(contenido)
 
-# Listas de tipos de prendas y adjetivos
+# Listas de tipos de prendas, adjetivos y calificacion
 tipos_de_prendas = [
     "camiseta", "pantalón", "chaqueta", "sudadera", "falda", "blusa", 
     "short", "abrigo", "traje", "vestido", "chaleco", "camisa", "jeans",
@@ -35,6 +35,10 @@ adjetivos = [
     "Comfort", "Essential", "Elegant", "Classic", "Cozy", "Urban", 
     "Soft", "Vintage", "Bold", "Trendy", "Relax", "Modern", "Casual",
     "Lux", "Sporty", "Luxe", "Active", "Eco", "Fresh", "Cool"
+]
+
+rangos =[
+    "5 estrellas", "4 estrellas", "3 Estrellas", "2 Estrellas", "1 Estrella"
 ]
 
 
@@ -115,8 +119,45 @@ def llenar_pedidos():
     with open('inserts_Pedido.sql', 'w', encoding='utf-8') as archivo:
         archivo.write(contenido)
 
-llenar_pedidos()
+def llenar_entregaDomicilio():
+    i = 0
+    contenido = ''
+    while i < 1000:
+        id = 1+i
+        direccion = fake.address()
+        idTipoEntrega = 1
+        idDistrito = random.randint(1,88)
+        tmp = f"INSERT INTO EntregaDomicilio (id, direccion, idTipoEntrega, idDistrito) VALUES ({id}, '{direccion}', '{idTipoEntrega}', {idDistrito});\n"
+        contenido= contenido+tmp
+        i = i + 1
+    with open('inserts_entrega_domicilio.sql', 'w', encoding='utf-8') as archivo:
+        archivo.write(contenido)
 
+def llenar_entregaRecojo():
+    i = 0
+    contenido = ''
+    while i < 1000:
+        id = 1+i
+        direccion = fake.address()
+        idTipoEntrega = 2
+        idSede = random.randint(1,19)
+        tmp = f"INSERT INTO EntregaRecojo (id, direccion, idTipoEntrega, idSede) VALUES ({id}, '{direccion}', '{idTipoEntrega}', {idSede});\n"
+        contenido= contenido+tmp
+        i = i + 1
+    with open('inserts_entregaRecojo.sql', 'w', encoding='utf-8') as archivo:
+        archivo.write(contenido)
 
-
+def llenar_pedidoproductotallacolor():
+    i = 0
+    contenido = ''
+    while i < 1000:
+        id = 1+i
+        idPedido = random.randint(1,10000)
+        idProductoTallaColor = random.randint(1,10000)
+        cantidad = random.randint(1,3)
+        tmp = f"INSERT INTO PedidoProductoTallaColor (id, idPedido, idProductoTallaColor, cantidad) VALUES ({id}, '{idPedido}', '{idProductoTallaColor}', {cantidad});\n"
+        contenido= contenido+tmp
+        i = i + 1
+    with open('inserts_pedido_producto_talla_color.sql', 'w', encoding='utf-8') as archivo:
+        archivo.write(contenido)
 

@@ -1,4 +1,3 @@
--- migrate:up
 INSERT INTO PedidoProductoTallaColor (id, idPedido, idProductoTallaColor, cantidad) VALUES (1, '3819', '1839', 1);
 INSERT INTO PedidoProductoTallaColor (id, idPedido, idProductoTallaColor, cantidad) VALUES (2, '4676', '4377', 3);
 INSERT INTO PedidoProductoTallaColor (id, idPedido, idProductoTallaColor, cantidad) VALUES (3, '2702', '1720', 2);
@@ -999,7 +998,3 @@ INSERT INTO PedidoProductoTallaColor (id, idPedido, idProductoTallaColor, cantid
 INSERT INTO PedidoProductoTallaColor (id, idPedido, idProductoTallaColor, cantidad) VALUES (998, '7403', '446', 2);
 INSERT INTO PedidoProductoTallaColor (id, idPedido, idProductoTallaColor, cantidad) VALUES (999, '1860', '7622', 3);
 INSERT INTO PedidoProductoTallaColor (id, idPedido, idProductoTallaColor, cantidad) VALUES (1000, '3530', '313', 1);
-
--- migrate:down
-
-DELETE FORM PedidoProductoTallaColor;

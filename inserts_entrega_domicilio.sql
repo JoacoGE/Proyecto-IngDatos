@@ -1998,5 +1998,3 @@ INSERT INTO EntregaDomicilio (id, direccion, idTipoEntrega, idDistrito) VALUES (
 Mitchelltown, CO 00929', '1', 34);
 INSERT INTO EntregaDomicilio (id, direccion, idTipoEntrega, idDistrito) VALUES (1000, '530 Williams Courts
 South Brenda, ID 98970', '1', 16);
-
-DELETE FROM EntregaDomicilio
