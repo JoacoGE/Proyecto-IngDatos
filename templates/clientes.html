@@ -3,124 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Clientes</title>
-    <style>
-        /* Estilos generales */
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f8f8;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-top: 40px;
-            font-size: 2.5em;
-            font-weight: bold;
-        }
-
-        /* Tabla */
-        table {
-            width: 85%;
-            margin: 40px auto;
-            border-collapse: collapse;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        th, td {
-            padding: 16px;
-            text-align: left;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        th {
-            background-color: #333;
-            color: #fff;
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-
-        td {
-            font-size: 1em;
-            color: #555;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f7f7f7;
-        }
-
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-
-        /* Estilo para el mensaje cuando no hay clientes */
-        p {
-            text-align: center;
-            color: #777;
-            font-size: 1.2em;
-            margin-top: 50px;
-        }
-
-        /* Botones */
-        .button {
-            display: inline-block;
-            padding: 12px 24px;
-            margin: 10px;
-            text-align: center;
-            background-color: #4CAF50;
-            color: #fff;
-            border-radius: 5px;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            font-size: 1em;
-            text-decoration: none;
-        }
-
-        .button:hover {
-            background-color: #45a049;
-        }
-
-        /* Botón para eliminar */
-        .button-delete {
-            background-color: #f44336;
-        }
-
-        .button-delete:hover {
-            background-color: #e53935;
-        }
-
-        /* Botón para editar */
-        .button-edit {
-            background-color: #ffa500;
-        }
-
-        .button-edit:hover {
-            background-color: #ff8c00;
-        }
-
-        /* Responsive */
-        @media screen and (max-width: 768px) {
-            table {
-                width: 95%;
-                margin: 20px;
-            }
-
-            th, td {
-                font-size: 0.9em;
-                padding: 12px;
-            }
-
-            h1 {
-                font-size: 2em;
-            }
-        }
-
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesCliente.css') }}">
 </head>
 <body>
     <h1>Lista de Clientes</h1>
@@ -132,21 +15,69 @@
         <a href="/eliminar_cliente" class="button button-delete">Eliminar Cliente</a>
     </div>
 
+    <!-- Formulario para seleccionar un cliente por ID -->
+    <form action="/mostrar_cliente" method="POST">
+        <label for="cliente_id">Seleccione ID del Cliente:</label>
+        <input type="number" id="cliente_id" name="cliente_id" min="1" required>
+        <button type="submit">Mostrar Cliente</button>
+    </form>
+
+    <!-- Mostrar la información del cliente seleccionado -->
+    {% if cliente %}
+        <h2>Información del Cliente Seleccionado</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <td>{{ cliente.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ cliente.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Apellido</th>
+                <td>{{ cliente.apellido }}</td>
+            </tr>
+            <tr>
+                <th>DNI</th>
+                <td>{{ cliente.dni }}</td>
+            </tr>
+            <tr>
+                <th>Correo</th>
+                <td>{{ cliente.correo }}</td>
+            </tr>
+            <tr>
+                <th>Celular</th>
+                <td>{{ cliente.celular }}</td>
+            </tr>
+            <tr>
+                <th>Dirección</th>
+                <td>{{ cliente.direccion }}</td>
+            </tr>
+        </table>
+    {% else %}
+        <p>No se encontró al cliente con ese ID.</p>
+    {% endif %}
+
+    <!-- Tabla con todos los clientes -->
+    <h2>Todos los Clientes</h2>
     {% if clientes %}
         <table>
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>DNI</th>
                     <th>Correo</th>
-                    <th>Teléfono</th>
+                    <th>Celular</th>
                     <th>Dirección</th>
                 </tr>
             </thead>
             <tbody>
                 {% for cliente in clientes %}
                     <tr>
+                        <td>{{ cliente.id }}</td>
                         <td>{{ cliente.nombre }}</td>
                         <td>{{ cliente.apellido }}</td>
                         <td>{{ cliente.dni }}</td>

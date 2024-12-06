@@ -44,5 +44,21 @@ class Database:
     
     def get_all_clients(self):
         """Obtener todos los clientes de la base de datos."""
-        query = "SELECT nombre, apellido, DNI, correo, celular, direccion FROM Clientes"
+        query = "SELECT id,nombre, apellido, DNI, correo, celular, direccion FROM Clientes"
         return self.fetchall(query)
+    
+    #def eliminar_cliente(self, client_id):
+    #    """Eliminar un cliente por su ID."""
+    #    query = "DELETE FROM Clientes WHERE id = ?"
+    #    return self.execute(query, (client_id,))
+
+    def agregar_cliente(self, nombre, apellido, dni, correo, celular, direccion):
+        """Agregar un cliente a la base de datos."""
+        query = """
+        INSERT INTO Clientes (nombre, apellido, DNI, correo, celular, direccion)
+        VALUES (?, ?, ?, ?, ?, ?)
+        """
+        self.execute(query, (nombre, apellido, dni, correo, celular, direccion))
+    
+    #def modificar_cliente():
+        

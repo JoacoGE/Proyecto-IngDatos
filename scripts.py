@@ -160,4 +160,3 @@ def llenar_pedidoproductotallacolor():
         i = i + 1
     with open('inserts_pedido_producto_talla_color.sql', 'w', encoding='utf-8') as archivo:
         archivo.write(contenido)
-

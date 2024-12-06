@@ -23,6 +23,7 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE(nombre || ' no es mayor de edad');
     END IF;
     edad := edad - 31;
+    
     IF edad >= 18 THEN
         DBMS_OUTPUT.PUT_LINE(nombre || ' es mayor de edad');
     ELSIF edad <= 0 THEN
