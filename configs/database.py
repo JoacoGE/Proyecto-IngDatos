@@ -20,12 +20,20 @@ class Database:
             print("Conexión cerrada.")
 
     def execute(self, query, params=()):
-        """Ejecutar una consulta SQL."""
-        self.connect()  # Asegúrate de estar conectado
+        """Ejecutar una consulta SQL que no requiere resultados."""
+        self.connect()
         cursor = self.connection.cursor()
         cursor.execute(query, params)
         self.connection.commit()
         return cursor
+
+    def executeR(self, query, params=()):
+        """Ejecutar una consulta SQL que devuelve resultados."""
+        self.connect()
+        cursor = self.connection.cursor()
+        cursor.execute(query, params)
+        results = cursor.fetchall()
+        return results
 
     def fetchall(self, query, params=()):
         """Ejecutar una consulta SQL y devolver todos los resultados."""
@@ -43,14 +51,18 @@ class Database:
         return self.fetchall(query)
     
     def get_all_clients(self):
-        """Obtener todos los clientes de la base de datos."""
-        query = "SELECT id,nombre, apellido, DNI, correo, celular, direccion FROM Clientes"
+        """Obtener todos los clientes de la base de datos ordenados por ID descendente."""
+        query = """
+        SELECT id, nombre, apellido, DNI, correo, celular, direccion
+        FROM Clientes
+        ORDER BY id DESC
+        """
         return self.fetchall(query)
     
-    #def eliminar_cliente(self, client_id):
-    #    """Eliminar un cliente por su ID."""
-    #    query = "DELETE FROM Clientes WHERE id = ?"
-    #    return self.execute(query, (client_id,))
+    def eliminar_cliente(self, cliente_id):
+        query = "DELETE FROM Clientes WHERE id = ?"
+        self.execute(query, (cliente_id,))
+        self.commit()
 
     def agregar_cliente(self, nombre, apellido, dni, correo, celular, direccion):
         """Agregar un cliente a la base de datos."""
@@ -60,19 +72,20 @@ class Database:
         """
         self.execute(query, (nombre, apellido, dni, correo, celular, direccion))
     
-    def modificar_cliente(cliente_id, nombre, apellido, dni, correo, celular, direccion):
-        """Actualizar los datos del cliente en la base de datos."""
-        db = Database()
-        db.connect()
-        db.execute("""
-            UPDATE Clientes
-            SET nombre = ?, apellido = ?, dni = ?, correo = ?, celular = ?, direccion = ?
-            WHERE id = ?
-        """, (nombre, apellido, dni, correo, celular, direccion, cliente_id))
-        db.close()
+    def modificar_cliente(self, cliente_id, nombre, apellido, dni, correo, celular, direccion):
+        """Actualiza los datos de un cliente en la base de datos."""
+        query = """
+        UPDATE Clientes
+        SET nombre = ?, apellido = ?, dni = ?, correo = ?, celular = ?, direccion = ?
+        WHERE id = ?
+        """
+        self.execute(query, (nombre, apellido, dni, correo, celular, direccion, cliente_id))
+    
+    def get_all_pedidos(self):
+        """Obtener todos los pedidos de la base de datos."""
+        query = "SELECT p.Nro_pedido As Nro_Pedido, p.monto as Monto, c.nombre as NombreCliente, e.nombre as Estado, t.nombre as TipoDeEntrega  FROM Pedido p inner JOIN Clientes c on c.id=p.idCliente INNER JOIN Estado e on e.id=p.idEstado INNER JOIN TipoEntrega t on t.id=p.idEntrega"
+        return self.fetchall(query)
+
+    
    
-    def obtener_cliente_por_id(self, cliente_id):
-        """Obtener un cliente de la base de datos por su ID."""
-        query = "SELECT id, nombre, apellido, DNI, correo, celular, direccion FROM Clientes WHERE id = %s"
-        # Asumiendo que usas %s para parámetros en SQL (esto es compatible con muchos motores de base de datos)
-        return self.fetchone(query, (cliente_id,))
+    

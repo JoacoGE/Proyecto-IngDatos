@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Pedidos</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/about">Acerca de</a></li>
+                <li><a href="/contact">Contacto</a></li>
+                <li><a href="/clientes">Clientes</a></li>
+                <li><a href="/pedidos">Pedidos</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Lista de Pedidos</h2>
+            <div class="pedidos">
+                {% for pedido in pedidos %}
+                    <div class="pedido">
+                        <h3>Nro Pedido: {{ pedido['Nro_Pedido'] }}</h3>
+                        <p>Cliente: {{ pedido['NombreCliente'] }}</p>
+                        <p>Monto: {{ pedido['Monto'] }}</p>
+                        <p>Estado: {{ pedido['Estado'] }}</p>
+                        <p>Tipo de Entrega: {{ pedido['TipoDeEntrega'] }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Proyecto IngDatos.</p>
+    </footer>
+</body>
+</html>

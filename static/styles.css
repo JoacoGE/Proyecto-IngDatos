@@ -97,3 +97,27 @@ footer {
 .producto p {
     margin: 5px 0;
 }
+
+.pedidos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.pedido {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: calc(33.333% - 20px);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.pedido h3 {
+    margin: 10px 0;
+}
+
+.pedido p {
+    margin: 5px 0;
+}
+

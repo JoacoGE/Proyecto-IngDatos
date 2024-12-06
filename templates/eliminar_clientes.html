@@ -3,28 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <title>Eliminar Cliente</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='stylesEliminar.css') }}">
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        button {
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Información del cliente */
+        .cliente-info {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            text-align: left;
+            background-color: #f9f9f9;
+        }
+
+        .cliente-info p {
+            margin: 5px 0;
+        }
+
+        /* Enlace de regreso */
+        .back-button {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .back-button a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        .back-button a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>Eliminar Cliente</h1>
+    <div class="container">
+        <h1>Buscar Cliente para Eliminar</h1>
 
-    <!-- Mensaje de éxito o error -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <ul>
-                {% for category, message in messages %}
-                    <li class="{{ category }}">{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
+        <!-- Formulario para Buscar Cliente por ID -->
+        <form action="/eliminar_cliente" method="POST">
+            <label for="cliente_id">Ingrese el ID del Cliente:</label>
+            <input type="text" id="cliente_id" name="cliente_id" required><br><br>
+            <button type="submit">Buscar Cliente</button>
+        </form>
 
-    <!-- Formulario para eliminar cliente por ID -->
-    <form action="{{ url_for('eliminar_cliente') }}" method="POST">
-        <label for="cliente_id">Ingrese el ID del cliente a eliminar:</label>
-        <input type="text" id="cliente_id" name="cliente_id" required><br><br>
-    
-        <button type="submit">Eliminar Cliente</button>
-    </form>
+            <div class="cliente-info">
+                <h2>Información del Cliente</h2>
+                <p><strong>Nombre:</strong> Renzo</p>
+                <p><strong>DNI:</strong> 7489738</p>
+                <p><strong>Correo:</strong> fajks@gmail.com</p>
+                <p><strong>Celular:</strong> 974180043</p>
+                <p><strong>Dirección:</strong> sasa</p>
+                
+                <form action="/eliminar_cliente" method="POST">
+                    <input type="hidden" name="cliente_id" value="{{ cliente[0] }}">
+                    <button type="submit">Eliminar Cliente</button>
+                </form>
+            </div>
+
+        <div class="back-button">
+            <a href="/clientes">Volver a la lista de Clientes</a>
+        </div>
+    </div>
 </body>
 </html>

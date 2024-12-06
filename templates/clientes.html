@@ -11,11 +11,11 @@
     <!-- Botones para Agregar, Editar y Eliminar -->
     <div style="text-align: center;">
         <a href="/agregar_cliente" class="button">Agregar Cliente</a>
-        <a href="/editar_clientes" class="button button-edit">Editar Cliente</a>
-        <a href="/eliminar_cliente" class="button button-delete">Eliminar Cliente</a>
+        <a href="/editar_clientes" class="button">Editar Cliente</a>
+        <a href="/eliminar_cliente" class="button">Eliminar Cliente</a>
     </div>
 
-    {% if clientes %}
+        {% if clientes %}
         <table>
             <thead>
                 <tr>
@@ -30,15 +30,15 @@
             </thead>
             <tbody>
                 {% for cliente in clientes %}
-                    <tr>
-                        <td>{{ cliente.id }}</td>
-                        <td>{{ cliente.nombre }}</td>
-                        <td>{{ cliente.apellido }}</td>
-                        <td>{{ cliente.dni }}</td>
-                        <td>{{ cliente.correo }}</td>
-                        <td>{{ cliente.celular }}</td>
-                        <td>{{ cliente.direccion }}</td>
-                    </tr>
+                <tr>
+                    <td>{{ cliente[0] }}</td> <!-- ID -->
+                    <td>{{ cliente[1] }}</td> <!-- Nombre -->
+                    <td>{{ cliente[2] }}</td> <!-- Apellido -->
+                    <td>{{ cliente[3] }}</td> <!-- DNI -->
+                    <td>{{ cliente[4] }}</td> <!-- Correo -->
+                    <td>{{ cliente[5] }}</td> <!-- Celular -->
+                    <td>{{ cliente[6] }}</td> <!-- Dirección -->
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
