@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 40px;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        /* Tabla */
+        table {
+            width: 85%;
+            margin: 40px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        td {
+            font-size: 1em;
+            color: #555;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f7f7f7;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Estilo para el mensaje cuando no hay clientes */
+        p {
+            text-align: center;
+            color: #777;
+            font-size: 1.2em;
+            margin-top: 50px;
+        }
+
+        /* Botones */
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 10px;
+            text-align: center;
+            background-color: #4CAF50;
+            color: #fff;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-size: 1em;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        /* Botón para eliminar */
+        .button-delete {
+            background-color: #f44336;
+        }
+
+        .button-delete:hover {
+            background-color: #e53935;
+        }
+
+        /* Botón para editar */
+        .button-edit {
+            background-color: #ffa500;
+        }
+
+        .button-edit:hover {
+            background-color: #ff8c00;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            table {
+                width: 95%;
+                margin: 20px;
+            }
+
+            th, td {
+                font-size: 0.9em;
+                padding: 12px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Lista de Clientes</h1>
+    
+    <!-- Botones para Agregar, Editar y Eliminar -->
+    <div style="text-align: center;">
+        <a href="/agregar_cliente" class="button">Agregar Cliente</a>
+        <a href="/editar_cliente" class="button button-edit">Editar Cliente</a>
+        <a href="/eliminar_cliente" class="button button-delete">Eliminar Cliente</a>
+    </div>
+
+    {% if clientes %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>DNI</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cliente in clientes %}
+                    <tr>
+                        <td>{{ cliente.nombre }}</td>
+                        <td>{{ cliente.apellido }}</td>
+                        <td>{{ cliente.dni }}</td>
+                        <td>{{ cliente.correo }}</td>
+                        <td>{{ cliente.celular }}</td>
+                        <td>{{ cliente.direccion }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay clientes disponibles.</p>
+    {% endif %}
+</body>
+</html>

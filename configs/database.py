@@ -41,3 +41,8 @@ class Database:
         """Obtener todos los productos de la base de datos."""
         query = "SELECT nombre, descripcion, precio, foto AS url_imagen FROM Producto"
         return self.fetchall(query)
+    
+    def get_all_clients(self):
+        """Obtener todos los clientes de la base de datos."""
+        query = "SELECT nombre, apellido, DNI, correo, celular, direccion FROM Clientes"
+        return self.fetchall(query)
