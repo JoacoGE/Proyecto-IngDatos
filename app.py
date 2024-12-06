@@ -3,6 +3,7 @@ from configs.database import Database
 
 app = Flask(__name__)
 
+
 @app.route('/<path:filename>')
 def server_static(filename):
     return app.send_static_file(filename)
@@ -20,12 +21,11 @@ def cliente():
     return render_template('clientes.html', clientes=clientes)
 
 
-#@app.route('/eliminar_cliente/<int:client_id>/')
-
+ 
 
 @app.route('/agregar_cliente', methods=['GET', 'POST'])
 def agregar_cliente():
-    """Agregar un cliente a la base de datos."""
+    """Formulario para agregar un nuevo cliente."""
     if request.method == 'POST':
         nombre = request.form['nombre']
         apellido = request.form['apellido']
@@ -35,26 +35,42 @@ def agregar_cliente():
         direccion = request.form['direccion']
         db = Database()
         db.connect()
-        db.agregar_cliente(nombre, apellido, dni, correo, celular, direccion)
+        db.execute("""
+            INSERT INTO Clientes (nombre, apellido, dni, correo, celular, direccion)
+            VALUES (?, ?, ?, ?, ?, ?)
+        """, (nombre, apellido, dni, correo, celular, direccion))
         db.close()
-        return redirect(url_for('cliente'))
-    return render_template('agregar_cliente.html')
+
+        return redirect(url_for('cliente'))  # Redirige a la lista de clientes
+
+    return render_template('agregar_cliente.html')  # Renderiza el formulario en GET
 
 
-@app.route('/mostrar_cliente', methods=['POST'])
-def mostrar_cliente():
-    """Mostrar los detalles de un cliente seleccionado por su ID."""
-    cliente_id = request.form.get('cliente_id')
-    
-    # Obtener el cliente por su ID desde la base de datos
+@app.route('/editar_clientes/<int:cliente_id>', methods=['GET', 'POST'])
+def editar_cliente(cliente_id):
+    """Editar los datos de un cliente."""
     db = Database()
     db.connect()
+    if request.method == 'POST':
+        nombre = request.form['nombre']
+        apellido = request.form['apellido']
+        dni = request.form['dni']
+        correo = request.form['correo']
+        celular = request.form['celular']
+        direccion = request.form['direccion']
+        db.execute("""
+            UPDATE Clientes
+            SET nombre = ?, apellido = ?, dni = ?, correo = ?, celular = ?, direccion = ?
+            WHERE id = ?
+        """, (nombre, apellido, dni, correo, celular, direccion, cliente_id))
+        db.close()
+        return redirect(url_for('cliente'))   
     cliente = db.fetchone("SELECT * FROM Clientes WHERE id = ?", (cliente_id,))
-    clientes = db.fetchall("SELECT * FROM Clientes")  # Obtener todos los clientes
     db.close()
-
-    return render_template('clientes.html', cliente=cliente, clientes=clientes)
-
+    if cliente:
+        return render_template('editar_cliente.html', cliente=cliente)
+    else:
+        return "Cliente no encontrado", 404
 
 if __name__ == '__main__':
     app.run(debug=True)

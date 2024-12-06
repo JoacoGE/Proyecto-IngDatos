@@ -60,5 +60,19 @@ class Database:
         """
         self.execute(query, (nombre, apellido, dni, correo, celular, direccion))
     
-    #def modificar_cliente():
-        
+    def modificar_cliente(cliente_id, nombre, apellido, dni, correo, celular, direccion):
+        """Actualizar los datos del cliente en la base de datos."""
+        db = Database()
+        db.connect()
+        db.execute("""
+            UPDATE Clientes
+            SET nombre = ?, apellido = ?, dni = ?, correo = ?, celular = ?, direccion = ?
+            WHERE id = ?
+        """, (nombre, apellido, dni, correo, celular, direccion, cliente_id))
+        db.close()
+   
+    def obtener_cliente_por_id(self, cliente_id):
+        """Obtener un cliente de la base de datos por su ID."""
+        query = "SELECT id, nombre, apellido, DNI, correo, celular, direccion FROM Clientes WHERE id = %s"
+        # Asumiendo que usas %s para parámetros en SQL (esto es compatible con muchos motores de base de datos)
+        return self.fetchone(query, (cliente_id,))

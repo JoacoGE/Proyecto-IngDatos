@@ -11,56 +11,10 @@
     <!-- Botones para Agregar, Editar y Eliminar -->
     <div style="text-align: center;">
         <a href="/agregar_cliente" class="button">Agregar Cliente</a>
-        <a href="/editar_cliente" class="button button-edit">Editar Cliente</a>
+        <a href="/editar_clientes" class="button button-edit">Editar Cliente</a>
         <a href="/eliminar_cliente" class="button button-delete">Eliminar Cliente</a>
     </div>
 
-    <!-- Formulario para seleccionar un cliente por ID -->
-    <form action="/mostrar_cliente" method="POST">
-        <label for="cliente_id">Seleccione ID del Cliente:</label>
-        <input type="number" id="cliente_id" name="cliente_id" min="1" required>
-        <button type="submit">Mostrar Cliente</button>
-    </form>
-
-    <!-- Mostrar la información del cliente seleccionado -->
-    {% if cliente %}
-        <h2>Información del Cliente Seleccionado</h2>
-        <table>
-            <tr>
-                <th>ID</th>
-                <td>{{ cliente.id }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ cliente.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Apellido</th>
-                <td>{{ cliente.apellido }}</td>
-            </tr>
-            <tr>
-                <th>DNI</th>
-                <td>{{ cliente.dni }}</td>
-            </tr>
-            <tr>
-                <th>Correo</th>
-                <td>{{ cliente.correo }}</td>
-            </tr>
-            <tr>
-                <th>Celular</th>
-                <td>{{ cliente.celular }}</td>
-            </tr>
-            <tr>
-                <th>Dirección</th>
-                <td>{{ cliente.direccion }}</td>
-            </tr>
-        </table>
-    {% else %}
-        <p>No se encontró al cliente con ese ID.</p>
-    {% endif %}
-
-    <!-- Tabla con todos los clientes -->
-    <h2>Todos los Clientes</h2>
     {% if clientes %}
         <table>
             <thead>

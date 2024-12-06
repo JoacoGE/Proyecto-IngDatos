@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Cliente</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesEliminar.css') }}">
+</head>
+<body>
+    <h1>Eliminar Cliente</h1>
+
+    <!-- Mensaje de éxito o error -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul>
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Formulario para eliminar cliente por ID -->
+    <form action="{{ url_for('eliminar_cliente') }}" method="POST">
+        <label for="cliente_id">Ingrese el ID del cliente a eliminar:</label>
+        <input type="text" id="cliente_id" name="cliente_id" required><br><br>
+    
+        <button type="submit">Eliminar Cliente</button>
+    </form>
+</body>
+</html>
