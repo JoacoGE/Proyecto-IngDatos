@@ -107,7 +107,7 @@ def llenar_pedidos():
     while i < 10000:
         id = 1+i
         NroPedido = random.randint(10000, 99999)
-        fecha = fake.date_time_between(start_date='-1y', end_date='now').strftime('%Y-%m-%d')
+        fecha = f"'{fake.date_time_between(start_date='-1y', end_date='now').strftime('%d/%m/%y')}'"
         Monto = round(random.uniform(200.0, 400.0),2)
         id_cliente = random.randint(1, 1000)
         id_estado = random.randint(1, 2)
@@ -161,5 +161,4 @@ def llenar_pedidoproductotallacolor():
         archivo.write(contenido)
 
 
-llenar_entregaRecojo()
-llenar_entregaDomicilio()
+llenar_pedidos()

@@ -2,7 +2,7 @@
 
 CREATE TABLE Calificacion (
     id INTEGER NOT NULL PRIMARY KEY ,
-    nombre VARCHAR(20),
+    nombre VARCHAR(50),
     idCliente INTEGER NOT NULL,
     idProducto INTEGER NOT NULL,
     FOREIGN KEY (idCliente) REFERENCES Clientes(id),

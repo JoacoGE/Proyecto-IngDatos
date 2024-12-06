@@ -1,12 +1,12 @@
 -- migrate:up
 CREATE TABLE Producto (
     id INTEGER NOT NULL PRIMARY KEY ,
-    nombre VARCHAR(20),
-    codigo VARCHAR(20),
+    nombre VARCHAR(50),
+    codigo VARCHAR(50),
     precio FLOAT,
-    foto VARCHAR(20),
-    descripcion VARCHAR(100),
-    especificaciones VARCHAR(80),
+    foto VARCHAR(50),
+    descripcion VARCHAR(200),
+    especificaciones VARCHAR(200),
     idMarca INTEGER NOT NULL,
     idTipoProducto INTEGER NOT NULL,
     idProveedor INTEGER NOT NULL,

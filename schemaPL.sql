@@ -1,14 +1,14 @@
 -- Clientes
 
 CREATE TABLE Clientes (
-  id INTEGER NOT NULL PRIMARY KEY,
-  nombre VARCHAR(30) NOT NULL,
-  apellido VARCHAR(30) NOT NULL,
-  DNI VARCHAR(8) NOT NULL,
-  correo VARCHAR(20) NOT NULL,
-  celular VARCHAR(10) NOT NULL,
-  direccion VARCHAR(30) NOT NULL
-
+  id INTEGER NOT NULL PRIMARY KEY ,
+  nombre VARCHAR(50) NOT NULL,
+  apellido VARCHAR(50) NOT NULL,
+  DNI VARCHAR(15) NOT NULL,
+  correo VARCHAR(35) NOT NULL,
+  celular VARCHAR(25) NOT NULL,
+  direccion VARCHAR(70) NOT NULL
+  
 );
 
 ALTER TABLE Clientes ADD (
@@ -31,7 +31,7 @@ END;
 
 CREATE TABLE Estado (
     id INTEGER NOT NULL PRIMARY KEY,
-    nombre VARCHAR(20)
+    nombre VARCHAR(50)
 );
 
 ALTER TABLE Estado ADD (
@@ -54,7 +54,7 @@ END;
 
 CREATE TABLE Calificacion (
     id INTEGER NOT NULL PRIMARY KEY ,
-    nombre VARCHAR(20),
+    nombre VARCHAR(50),
     idCliente INTEGER NOT NULL,
     idProducto INTEGER NOT NULL,
     FOREIGN KEY (idCliente) REFERENCES Clientes(id),
@@ -81,12 +81,12 @@ END;
 
 CREATE TABLE Producto (
     id INTEGER NOT NULL PRIMARY KEY ,
-    nombre VARCHAR(20),
-    codigo VARCHAR(20),
+    nombre VARCHAR(50),
+    codigo VARCHAR(50),
     precio FLOAT,
-    foto VARCHAR(20),
-    descripcion VARCHAR(100),
-    especificaciones VARCHAR(80),
+    foto VARCHAR(50),
+    descripcion VARCHAR(200),
+    especificaciones VARCHAR(200),
     idMarca INTEGER NOT NULL,
     idTipoProducto INTEGER NOT NULL,
     idProveedor INTEGER NOT NULL,
@@ -119,7 +119,7 @@ END;
 
 CREATE TABLE TipoProducto (
     id INTEGER NOT NULL PRIMARY KEY ,
-    nombre VARCHAR(20)
+    nombre VARCHAR(50)
 );
 
 ALTER TABLE TipoProducto ADD (
@@ -140,7 +140,7 @@ END;
 
 CREATE TABLE Marca (
     id INTEGER NOT NULL PRIMARY KEY ,
-    nombre VARCHAR(20)
+    nombre VARCHAR(50)
 );
 
 ALTER TABLE Marca ADD (
@@ -189,7 +189,7 @@ END;
 
 CREATE TABLE Genero (
     id INTEGER NOT NULL PRIMARY KEY ,
-    nombre VARCHAR(20)
+    nombre VARCHAR(50)
 );
 
 ALTER TABLE Genero ADD (
@@ -211,7 +211,7 @@ END;
 
 CREATE TABLE Talla (
     id INTEGER NOT NULL PRIMARY KEY ,
-    nombre VARCHAR(20)
+    nombre VARCHAR(50)
 );
 
 ALTER TABLE Talla ADD (
@@ -233,7 +233,7 @@ END;
 
 CREATE TABLE Color (
     id INTEGER NOT NULL PRIMARY KEY ,
-    nombre VARCHAR(20)
+    nombre VARCHAR(50)
 );
 
 ALTER TABLE Color ADD (
@@ -255,7 +255,7 @@ END;
 
 CREATE TABLE Proveedor (
     id INTEGER NOT NULL PRIMARY KEY ,
-    nombre VARCHAR(20)
+    nombre VARCHAR(50)
 );
 
 ALTER TABLE Proveedor ADD (
@@ -277,7 +277,7 @@ END;
 
 CREATE TABLE Temporada (
     id INTEGER NOT NULL PRIMARY KEY ,
-    nombre VARCHAR(20)
+    nombre VARCHAR(50)
 );
 
 ALTER TABLE Temporada ADD (
@@ -300,7 +300,7 @@ END;
 
 CREATE TABLE TipoEntrega (
     id INTEGER NOT NULL PRIMARY KEY ,
-    nombre VARCHAR(20)
+    nombre VARCHAR(50)
 );
 
 ALTER TABLE TipoEntrega ADD (
@@ -323,7 +323,7 @@ END;
 CREATE TABLE Sedes (
     id INTEGER NOT NULL PRIMARY KEY ,
     nombre VARCHAR(100),
-    direccion VARCHAR(20),
+    direccion VARCHAR(200),
     idDistrito INTEGER NOT NULL,
     FOREIGN KEY (idDistrito) REFERENCES Distrito(id)
 );
@@ -348,7 +348,7 @@ END;
 
 CREATE TABLE EntregaDomicilio (
     id INTEGER NOT NULL PRIMARY KEY ,
-    direccion VARCHAR(20),
+    direccion VARCHAR(200),
     idTipoEntrega INTEGER NOT NULL,
     idDistrito INTEGER NOT NULL,
     FOREIGN KEY (idTipoEntrega) REFERENCES TipoEntrega(id),
@@ -400,7 +400,7 @@ END;
 
 CREATE TABLE Distrito (
     id INTEGER NOT NULL PRIMARY KEY ,
-    nombre VARCHAR(20),
+    nombre VARCHAR(50),
     idProvincia INTEGER NOT NULL,
     FOREIGN KEY (idProvincia) REFERENCES Provincia(id)
 );
@@ -424,7 +424,7 @@ END;
 
 CREATE TABLE Provincia (
     id INTEGER NOT NULL PRIMARY KEY ,
-    nombre VARCHAR(20),
+    nombre VARCHAR(50),
     idDepartamento INTEGER NOT NULL,
     FOREIGN KEY (idDepartamento) REFERENCES Departamento(id)
 );
@@ -448,7 +448,7 @@ END;
 
 CREATE TABLE Departamento (
     id INTEGER NOT NULL PRIMARY KEY ,
-    nombre VARCHAR(20)
+    nombre VARCHAR(50)
 );
 
 ALTER TABLE Departamento ADD (
