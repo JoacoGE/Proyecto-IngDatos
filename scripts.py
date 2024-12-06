@@ -127,7 +127,7 @@ def llenar_entregaDomicilio():
         direccion = fake.address()
         idTipoEntrega = 1
         idDistrito = random.randint(1,88)
-        tmp = f"INSERT INTO EntregaDomicilio (id, direccion, idTipoEntrega, idDistrito) VALUES ({id}, '{direccion}', '{idTipoEntrega}', {idDistrito});\n"
+        tmp = f"INSERT INTO EntregaDomicilio (id, direccion, idTipoEntrega, idDistrito) VALUES ({id}, '{direccion}', {idTipoEntrega}, {idDistrito});\n"
         contenido= contenido+tmp
         i = i + 1
     with open('inserts_entrega_domicilio.sql', 'w', encoding='utf-8') as archivo:
@@ -138,10 +138,9 @@ def llenar_entregaRecojo():
     contenido = ''
     while i < 1000:
         id = 1+i
-        direccion = fake.address()
         idTipoEntrega = 2
         idSede = random.randint(1,19)
-        tmp = f"INSERT INTO EntregaRecojo (id, direccion, idTipoEntrega, idSede) VALUES ({id}, '{direccion}', '{idTipoEntrega}', {idSede});\n"
+        tmp = f"INSERT INTO EntregaRecojo (id, idTipoEntrega, idSede) VALUES ({id}, {idTipoEntrega}, {idSede});\n"
         contenido= contenido+tmp
         i = i + 1
     with open('inserts_entregaRecojo.sql', 'w', encoding='utf-8') as archivo:
@@ -160,3 +159,7 @@ def llenar_pedidoproductotallacolor():
         i = i + 1
     with open('inserts_pedido_producto_talla_color.sql', 'w', encoding='utf-8') as archivo:
         archivo.write(contenido)
+
+
+llenar_entregaRecojo()
+llenar_entregaDomicilio()

@@ -1002,4 +1002,4 @@ INSERT INTO PedidoProductoTallaColor (id, idPedido, idProductoTallaColor, cantid
 
 -- migrate:down
 
-DELETE FORM PedidoProductoTallaColor;
+DELETE FROM PedidoProductoTallaColor;
